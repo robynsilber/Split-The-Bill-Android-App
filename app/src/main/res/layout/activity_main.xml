@@ -24,7 +24,8 @@
         android:hint="@string/edittext_balance_before_taxes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/balance_EditText"/>
+        android:id="@+id/balance_EditText"
+        android:inputType="numberDecimal"/>
 
     <TextView
         android:layout_marginTop="16dp"
@@ -36,7 +37,8 @@
         android:hint="@string/edittext_taxes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/taxes_EditText"/>
+        android:id="@+id/taxes_EditText"
+        android:inputType="numberDecimal" />
 
     <Button
         android:layout_width="wrap_content"
