@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SplitTheBill</string>
+    <string name="start_a_new_bill_text">Start a New Bill</string>
+    <string name="total_before_tax_text">Total (before tax)</string>
+    <string name="edittext_balance_before_taxes">$0.00</string>
+    <string name="taxes_text">Taxes</string>
+    <string name="edittext_taxes">$0.00</string>
+    <string name="go">GO</string>
+</resources>
