@@ -38,6 +38,10 @@ public class Bill {
         }
     }
 
+    public double getTaxPercent(){
+        return mtaxPercent;
+    }
+
 
 
 

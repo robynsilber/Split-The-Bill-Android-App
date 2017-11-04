@@ -1,10 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context="com.robynsilber.splitthebill.ChooseAction">
 
-</LinearLayout>
+    <Button
+        android:layout_marginTop="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/deduct_an_amount_btn"
+        android:onClick="deductAnAmount"
+        android:id="@+id/deduct_an_amount_btn"/>
+
+    <Button
+        android:layout_below="@+id/deduct_an_amount_btn"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/split_remaining_btn"
+        android:onClick="splitRemaining"
+        android:id="@+id/split_remaining_btn"/>
+
+    <Button
+        android:layout_below="@id/split_remaining_btn"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/view_people_btn"
+        android:onClick="viewPeople"
+        android:id="@+id/view_people_btn"/>
+
+    <TextView
+        android:layout_below="@id/view_people_btn"
+        android:layout_marginTop="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/balance_textview_chooseActionActivity"
+        android:id="@+id/balance_textview_chooseActionActivity"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dollar_sign_text"
+        android:layout_toRightOf="@id/balance_textview_chooseActionActivity"
+        android:layout_toEndOf="@id/balance_textview_chooseActionActivity"
+        android:id="@+id/dollar_sign_text"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/BALANCE"
+        android:layout_toRightOf="@id/dollar_sign_text"
+        android:layout_toEndOf="@id/dollar_sign_text"/>
+
+    <Button
+        android:layout_marginTop="32dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cancel_btn"
+        android:onClick="cancelAndGoToMain"/>
+
+</RelativeLayout>

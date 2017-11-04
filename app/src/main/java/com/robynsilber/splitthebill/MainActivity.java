@@ -1,7 +1,8 @@
 package com.robynsilber.splitthebill;
 
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
@@ -25,7 +26,14 @@ public class MainActivity extends AppCompatActivity {
         // Before starting next Activity, check that balance is greater than zero
         if(mBill.getBalance() > 0.0){
             // start next Activity
+            Intent intent = new Intent(this, ChooseAction.class);
+            startActivity(intent);
+        }else{
+            /**
+             * TO-DO: display an error message
+             * **/
         }
+
     }
 
 
