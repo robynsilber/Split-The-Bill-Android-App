@@ -1,0 +1,13 @@
+package com.robynsilber.splitthebill;
+
+import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
+
+public class DeductAmountActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_deduct_amount);
+    }
+}
