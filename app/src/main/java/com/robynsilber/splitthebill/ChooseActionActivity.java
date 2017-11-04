@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
-public class ChooseAction extends AppCompatActivity {
+public class ChooseActionActivity extends AppCompatActivity {
 
     private Bill mBill;
 
