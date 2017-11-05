@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="16dp"
+    tools:context="com.robynsilber.splitthebill.SplitBalanceActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:text="@string/split_balance_textview"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:layout_marginBottom="16dp"
+        android:id="@+id/split_balance_textview"/>
+
+    <NumberPicker
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/split_balance_textview"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:id="@+id/number_picker"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/number_picker"
+        android:layout_marginTop="108dp"
+        android:layout_marginBottom="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_marginEnd="64dp"
+        android:text="@string/cancel_btn"
+        android:onClick="cancelAndGoBackToChooseAction"
+        android:id="@+id/cancel_btn_spilt_bal"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/number_picker"
+        android:layout_marginTop="108dp"
+        android:layout_alignBottom="@id/cancel_btn_spilt_bal"
+        android:layout_toRightOf="@id/cancel_btn_spilt_bal"
+        android:layout_toEndOf="@id/cancel_btn_spilt_bal"
+        android:text="@string/done_btn_spilt_bal"
+        android:onClick="splitTheBalance"
+        android:id="@+id/done_btn_spilt_bal"/>
+
+
+
+
+</RelativeLayout>
