@@ -25,6 +25,6 @@
     <string name="done_btn_spilt_bal">Done</string>
     <string name="colon">:</string>
     <string name="dollar_sign_textview">$</string>
-    <string name="email_btn">email</string>
+    <string name="send_btn">send</string>
     <string name="select_an_option_textview">Select an Option</string>
 </resources>

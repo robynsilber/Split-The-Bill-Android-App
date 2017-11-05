@@ -1,19 +1,24 @@
 package com.robynsilber.splitthebill;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PersonAdapter extends BaseAdapter {
 
     private Context mContext;
     private Person[] mPersonArray;
+    public static Map<Button, Integer> mDictionary;
 
     public PersonAdapter(Context context, ArrayList<Person> people){
         mContext = context;
@@ -21,6 +26,7 @@ public class PersonAdapter extends BaseAdapter {
         for(int i=0; i<people.size(); i++){
             mPersonArray[i] = people.get(i);
         }
+        mDictionary = new HashMap<>();
     }
 
     /* Gets the size of the array */
@@ -60,6 +66,7 @@ public class PersonAdapter extends BaseAdapter {
             holder = new ViewHolder(); // instantiates ViewHolder
             holder.personName = (TextView) convertView.findViewById(R.id.person_name_textview);
             holder.amountOwed = (TextView) convertView.findViewById(R.id.person_amount_textview);
+            holder.sendButton = (Button) convertView.findViewById(R.id.send_btn);
 
             // Sets a tag for the view that will be reused below
             convertView.setTag(holder);
@@ -74,6 +81,11 @@ public class PersonAdapter extends BaseAdapter {
 
         holder.personName.setText(person.getName());
         holder.amountOwed.setText(getStringBalance(person.getAmount()));
+
+        if(mDictionary.containsKey(holder.sendButton)){
+            Log.d("dictionary", "contains key already");
+        }
+        mDictionary.put(holder.sendButton, position);
 
         return convertView;
     }
@@ -104,5 +116,6 @@ public class PersonAdapter extends BaseAdapter {
     public static class ViewHolder{
         TextView personName;
         TextView amountOwed;
+        Button sendButton;
     }
 }
