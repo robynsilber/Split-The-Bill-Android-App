@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="16dp"
+    android:layout_marginRight="16dp"
+    tools:context="com.robynsilber.splitthebill.DeductAmountActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/deduct_an_amount_text"
+        android:id="@+id/deduct_an_amount_textview"
+        android:layout_marginBottom="32dp"
+        android:textAppearance="?android:textAppearanceLarge"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/deduct_an_amount_textview"
+        android:text="@string/person_textview"
+        android:id="@+id/person_textview"
+        android:layout_marginRight="64dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginBottom="32dp"
+        android:textAppearance="?android:textAppearanceMedium"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_name_here_edittext"
+        android:layout_below="@id/deduct_an_amount_textview"
+        android:layout_toRightOf="@id/person_textview"
+        android:layout_toEndOf="@id/person_textview"
+        android:id="@+id/enter_name_here_edittext"
+        android:layout_marginBottom="32dp"
+        android:inputType="text"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_alignBaseline="@id/person_textview"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/amount_textview"
+        android:layout_below="@id/person_textview"
+        android:layout_marginBottom="32dp"
+        android:id="@+id/amount_textview"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_alignLeft="@id/person_textview"
+        android:layout_alignStart="@id/person_textview"/>
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="@string/zero_dollars_hint"
+        android:inputType="numberDecimal"
+        android:layout_below="@id/enter_name_here_edittext"
+        android:layout_marginBottom="32dp"
+        android:id="@+id/amount_to_deduct_edittext"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_toRightOf="@id/amount_textview"
+        android:layout_toEndOf="@id/amount_textview"
+        android:layout_alignBaseline="@id/amount_textview"
+        android:layout_alignLeft="@id/enter_name_here_edittext"
+        android:layout_alignStart="@id/enter_name_here_edittext"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/add_tax_text"
+        android:layout_below="@id/amount_textview"
+        android:layout_marginBottom="32dp"
+        android:id="@+id/add_tax_text"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:layout_alignLeft="@id/amount_textview"
+        android:layout_alignStart="@id/amount_textview"/>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/amount_to_deduct_edittext"
+        android:layout_alignLeft="@id/amount_to_deduct_edittext"
+        android:layout_alignStart="@id/amount_to_deduct_edittext"
+        android:layout_marginBottom="32dp"
+        android:layout_alignBaseline="@id/add_tax_text"
+        android:layout_toRightOf="@id/add_tax_text"
+        android:layout_toEndOf="@id/add_tax_text"
+        android:onClick="checkedBoxToAddTax"
+        android:id="@+id/add_tax_checkbox"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_tax_text"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginRight="32dp"
+        android:layout_marginEnd="32dp"
+        android:text="@string/go_back"
+        android:onClick="goBackToChooseActionActivity"
+        android:id="@+id/go_back_btn"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/add_tax_text"
+        android:layout_toRightOf="@id/go_back_btn"
+        android:layout_toEndOf="@id/go_back_btn"
+        android:text="@string/done_btn_deduct"
+        android:onClick="deductAmountFromBalance"
+        android:id="@+id/done_btn_deduct"/>
+
+</RelativeLayout>

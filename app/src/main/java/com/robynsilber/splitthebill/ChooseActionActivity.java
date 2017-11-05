@@ -22,7 +22,7 @@ public class ChooseActionActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setContentView(R.layout.activity_choose_action);
-        mBill = getIntent().getParcelableExtra("bill");
+//        mBill = getIntent().getParcelableExtra("bill");
         updateBalanceOnUI();
     }
 
@@ -38,9 +38,15 @@ public class ChooseActionActivity extends AppCompatActivity {
     }
 
     public void splitRemaining(View view) {
+        Intent intent = new Intent(this, SplitBalanceActivity.class);
+        intent.putExtra("bill", mBill);
+        startActivity(intent);
     }
 
     public void viewPeople(View view) {
+        Intent intent = new Intent(this, ViewPeopleActivity.class);
+        intent.putExtra("bill", mBill);
+        startActivity(intent);
     }
 
     public void cancelAndGoToMain(View view) {

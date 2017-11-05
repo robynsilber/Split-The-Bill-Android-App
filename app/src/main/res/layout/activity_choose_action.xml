@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.robynsilber.splitthebill.ChooseAction">
+    tools:context="com.robynsilber.splitthebill.ChooseActionActivity">
 
     <Button
         android:layout_marginTop="32dp"
@@ -26,6 +26,7 @@
     <Button
         android:layout_below="@id/split_remaining_btn"
         android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/view_people_btn"
@@ -34,7 +35,6 @@
 
     <TextView
         android:layout_below="@id/view_people_btn"
-        android:layout_marginTop="16dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/balance_textview_chooseActionActivity"
@@ -44,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/dollar_sign_text"
+        android:layout_below="@id/view_people_btn"
         android:layout_toRightOf="@id/balance_textview_chooseActionActivity"
         android:layout_toEndOf="@id/balance_textview_chooseActionActivity"
         android:id="@+id/dollar_sign_text"/>
@@ -52,14 +53,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/BALANCE"
+        android:layout_below="@id/view_people_btn"
         android:layout_toRightOf="@id/dollar_sign_text"
-        android:layout_toEndOf="@id/dollar_sign_text"/>
+        android:layout_toEndOf="@id/dollar_sign_text"
+        android:id="@+id/balance"/>
 
     <Button
         android:layout_marginTop="32dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/cancel_btn"
-        android:onClick="cancelAndGoToMain"/>
+        android:onClick="cancelAndGoToMain"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>

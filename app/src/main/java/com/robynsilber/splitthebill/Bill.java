@@ -1,10 +1,29 @@
 package com.robynsilber.splitthebill;
 
 
-public class Bill {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.util.ArrayList;
+
+public class Bill implements Parcelable {
 
     private double mBalance = 0.0;
-    private final double mtaxPercent;
+    private double mTaxPercent = 0.0;
+    private ArrayList<Person> mPersonArrayList;
+
+    public static final Creator<Bill> CREATOR = new Creator<Bill>() {
+        @Override
+        public Bill createFromParcel(Parcel in) {
+            return new Bill(in);
+        }
+
+        @Override
+        public Bill[] newArray(int size) {
+            return new Bill[size];
+        }
+    };
+
 
     public Bill(String strBeforeTaxBalance, String strTaxes){
 
@@ -21,28 +40,79 @@ public class Bill {
             double beforeTaxBalance = Double.parseDouble(strBeforeTaxBalance);
             double taxes = Double.parseDouble(strTaxes);
 
-            mBalance = beforeTaxBalance + taxes;
-            mtaxPercent = taxes/beforeTaxBalance;
-        }else{
-            mtaxPercent = 0.0;
+            mBalance = 0.0 + beforeTaxBalance + taxes;
+            mTaxPercent = 0.0 + roundToTwoDecimalPlaces(taxes/beforeTaxBalance);
+            mPersonArrayList = new ArrayList<Person>();
         }
     }
+
+
+    protected Bill(Parcel in) {
+        mBalance = in.readDouble();
+        mTaxPercent = in.readDouble();
+        mPersonArrayList = new ArrayList<Person>();
+        in.readTypedList(mPersonArrayList, Person.CREATOR);
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeDouble(mBalance);
+        parcel.writeDouble(mTaxPercent);
+        parcel.writeTypedList(mPersonArrayList);
+    }
+
+
 
     public double getBalance(){
         return mBalance;
     }
 
+    // deducts a specific amount from the balance
     public void deductFromBalance(double amount){
         if(amount <= mBalance){
+            amount = roundToTwoDecimalPlaces(amount);
             mBalance -= amount;
         }
     }
 
     public double getTaxPercent(){
-        return mtaxPercent;
+        return mTaxPercent;
     }
 
+    // resets the members of Bill
+    public void setToZero(){
+        mBalance = 0.0;
+        mTaxPercent = 0.0;
+        mPersonArrayList = new ArrayList<Person>();
+    }
 
+    public String getStringBalance(){
+        if(mBalance == 0.0){
+            return "0.00";
+        }
+
+        String str = Double.toString(mBalance);
+        int idx = str.indexOf('.');
+        if(idx == -1){
+            str += ".00";
+        }else if(idx == str.length() - 1){
+            str += "00";
+        }else if(idx == str.length() - 2){
+            str += "0";
+        }else if(idx < str.length() - 3){
+            str = str.substring(0, idx+3);
+        }
+
+        return str;
+    }
+
+    public void addPersonToList(Person person){
+        mPersonArrayList.add(person);
+    }
+
+    public ArrayList<Person> getPersonArrayList(){
+        return mPersonArrayList;
+    }
 
 
 
@@ -76,5 +146,19 @@ public class Bill {
         }
         return true;
     }
+
+    // rounds a double to two decimal places
+    public static double roundToTwoDecimalPlaces(double n){
+        n = Math.round(n * 100.0);
+        n = n/100.0;
+        return n;
+    }
+
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
 
 }

@@ -29,6 +29,7 @@ public class DeductAmountActivity extends AppCompatActivity {
         goBackToChooseActionActivity();
     }
 
+
     public void deductAmountFromBalance(View view) {
         CheckBox checkBox = (CheckBox) findViewById(R.id.add_tax_checkbox);
         EditText editTextName = (EditText) findViewById(R.id.enter_name_here_edittext);
@@ -39,21 +40,37 @@ public class DeductAmountActivity extends AppCompatActivity {
             Person person;
             double amt = Double.parseDouble(editTextAmt.getText().toString());
 
-            if(checkBox.isChecked()){
-                amt += (amt * mBill.getTaxPercent());
-            }
+            if(amt <= mBill.getBalance()){
 
-            if(editTextName.getText().toString().length() > 0){
+                if(checkBox.isChecked()){
+                    double tax = amt * mBill.getTaxPercent();
 
-                person = new Person(editTextName.getText().toString(), amt);
+                    if(amt + tax <= mBill.getBalance()){
+                        amt += tax;
+                    }else{ // amt+tax > balance
+                        amt = mBill.getBalance(); // set amt to bal
+                    }
+                }
+
+                if(editTextName.getText().toString().length() > 0){
+
+                    person = new Person(editTextName.getText().toString(), amt);
+                }else{
+                    person = new Person(amt);
+                }
+
+                mBill.deductFromBalance(amt);
+                mBill.addPersonToList(person);
+
+                goBackToChooseActionActivity();
+
             }else{
-                person = new Person(amt);
+                /**
+                 * TODO: add error message (amt exceeds bill bal)
+                 * */
             }
 
-            mBill.deductFromBalance(amt);
-            mBill.addPersonToList(person);
 
-            goBackToChooseActionActivity();
 
         }else{
 
@@ -62,8 +79,8 @@ public class DeductAmountActivity extends AppCompatActivity {
              * */
 
         }
-
     }
+
 
     public void checkedBoxToAddTax(View view) {
 

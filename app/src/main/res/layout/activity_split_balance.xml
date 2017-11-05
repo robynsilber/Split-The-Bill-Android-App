@@ -21,7 +21,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/split_balance_textview"
         android:layout_centerHorizontal="true"
-        android:orientation="horizontal"
         android:id="@+id/number_picker"/>
 
     <Button

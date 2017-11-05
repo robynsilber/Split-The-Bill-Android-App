@@ -1,9 +1,27 @@
 package com.robynsilber.splitthebill;
 
-public class Person {
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import java.io.Serializable;
+
+public class Person implements Parcelable, Serializable {
     private static int mNum = 1;
     private String mName;
     private double mAmount = 0.0;
+
+    public static final Creator<Person> CREATOR = new Creator<Person>() {
+        @Override
+        public Person createFromParcel(Parcel in) {
+            return new Person(in);
+        }
+
+        @Override
+        public Person[] newArray(int size) {
+            return new Person[size];
+        }
+    };
 
     public Person(String name, double amount){
         mName = name;
@@ -16,6 +34,13 @@ public class Person {
         mAmount = amount;
         mNum++;
     }
+
+    protected Person(Parcel in) {
+        mName = in.readString();
+        mAmount = in.readDouble();
+    }
+
+
 
     public String getName(){
         return mName;
@@ -43,5 +68,16 @@ public class Person {
 
     public void setAmount(double amount){
         mAmount = amount;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(mName);
+        parcel.writeDouble(mAmount);
     }
 }
