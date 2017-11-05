@@ -20,8 +20,13 @@ public class MainActivity extends AppCompatActivity {
         EditText balanceEditText = (EditText) findViewById(R.id.balance_EditText);
         EditText taxesEditText = (EditText) findViewById(R.id.taxes_EditText);
 
+        String taxStr = taxesEditText.getText().toString();
+        if(taxStr.isEmpty()){
+            taxStr = "0.0";
+        }
+
         // creates new instance of Bill
-        mBill = new Bill(balanceEditText.getText().toString(), taxesEditText.getText().toString());
+        mBill = new Bill(balanceEditText.getText().toString(), taxStr);
 
         // Before starting next Activity, check that balance is greater than zero
         if(mBill.getBalance() > 0.0){

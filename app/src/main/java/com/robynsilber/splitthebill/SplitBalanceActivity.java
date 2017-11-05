@@ -40,33 +40,53 @@ public class SplitBalanceActivity extends AppCompatActivity {
         int num = mNumberPicker.getValue();
         double amt = mBill.getBalance() / ((double) num);
         double rAmt = Bill.roundToTwoDecimalPlaces(amt);
-        int diff = (int) ((mBill.getBalance() - (rAmt * num)) * 100);//num ppl who owe extra cent
 
-        /**
-         * TODO: check to see if Math.round could result in rounding up
-         * **/
-        if(diff == 0){ // even split
-            mBill.addPersonToList(new Person(rAmt, num));
-            mBill.deductFromBalance(rAmt * num);
-        }else if(diff > 0){
-            mBill.addPersonToList(new Person(rAmt + 0.01, diff));
-            mBill.deductFromBalance((rAmt+0.01)*diff);
-            mBill.addPersonToList(new Person(rAmt, (num-diff)));
-            mBill.deductFromBalance(rAmt * (num-diff));
+        double total = 0.0;
+
+        if(amt == rAmt){
+            Person person = new Person(rAmt, num);
+            mBill.addPersonToList(person);
+            total = rAmt * num;
+//            mBill.deductFromBalance(rAmt * num);
+        }else if(amt > rAmt){
+            double d = mBill.getBalance() - (num * rAmt);
+            double temp = (d * 100);
+            int oweExtraCent = (int) temp;
+
+            Person person1 = new Person(rAmt+0.01, oweExtraCent);
+            mBill.addPersonToList(person1);
+            total = (rAmt+0.01) * oweExtraCent;
+//            mBill.deductFromBalance((rAmt+0.01)*oweExtraCent);
+
+            Person person2 = new Person(rAmt, num-oweExtraCent);
+            mBill.addPersonToList(person2);
+            total += rAmt*(num-oweExtraCent);
+//            mBill.deductFromBalance(rAmt*(num-oweExtraCent));
+
         }else{
-            Log.d("splitTheBalance", "diff is less than 0");
-            throw new Error("splitTheBalance: diff is less than 0");
-            /**
-             * TODO: handle this
-             * **/
+            double d =(num * rAmt) - mBill.getBalance();
+            double temp = (d * 100);
+            int oweLessCent = (int) temp;
+
+            Person person1 = new Person(rAmt-0.01, oweLessCent);
+            mBill.addPersonToList(person1);
+            total = (rAmt-0.01) * oweLessCent;
+//            mBill.deductFromBalance((rAmt-0.01)*oweLessCent);
+
+            Person person2 = new Person(rAmt, num-oweLessCent);
+            mBill.addPersonToList(person2);
+            total += rAmt * (num-oweLessCent);
+//            mBill.deductFromBalance(rAmt*(num-oweLessCent));
         }
 
-
+        mBill.deductFromBalance(total);
+        Log.d("splitTheBalance", "total = " +total);
         Log.d("splitTheBalance", "balance = " + mBill.getBalance());
 
         if(mBill.getBalance() == 0.0){
             goBackToChooseActionActivity();
         }else{
+            Log.d("splitTheBalance", "Error: balance not = 0.0");
             throw new Error("Bill was not properly split");
         }
 

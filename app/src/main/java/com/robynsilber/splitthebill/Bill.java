@@ -41,8 +41,8 @@ public class Bill implements Parcelable {
             double taxes = Double.parseDouble(strTaxes);
 
             mBalance = 0.0 + beforeTaxBalance + taxes;
-            mTaxPercent = 0.0 + roundToTwoDecimalPlaces(taxes/beforeTaxBalance);
-            mPersonArrayList = new ArrayList<Person>();
+            mTaxPercent = 0.0 + roundToTwoDecimalPlaces(0.0 + (taxes/beforeTaxBalance));
+            mPersonArrayList = new ArrayList<>();
         }
     }
 
@@ -50,7 +50,7 @@ public class Bill implements Parcelable {
     protected Bill(Parcel in) {
         mBalance = in.readDouble();
         mTaxPercent = in.readDouble();
-        mPersonArrayList = new ArrayList<Person>();
+        mPersonArrayList = new ArrayList<>();
         in.readTypedList(mPersonArrayList, Person.CREATOR);
     }
 
@@ -84,6 +84,7 @@ public class Bill implements Parcelable {
         mBalance = 0.0;
         mTaxPercent = 0.0;
         mPersonArrayList = new ArrayList<Person>();
+        Person.resetCounter();
     }
 
     public String getStringBalance(){

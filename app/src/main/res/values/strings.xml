@@ -26,4 +26,5 @@
     <string name="colon">:</string>
     <string name="dollar_sign_textview">$</string>
     <string name="email_btn">email</string>
+    <string name="select_an_option_textview">Select an Option</string>
 </resources>

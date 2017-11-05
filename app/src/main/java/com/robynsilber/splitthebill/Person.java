@@ -81,6 +81,10 @@ public class Person implements Parcelable, Serializable {
         mAmount = amount;
     }
 
+    public static void resetCounter(){
+        mNum = 1;
+    }
+
     @Override
     public int describeContents() {
         return 0;
