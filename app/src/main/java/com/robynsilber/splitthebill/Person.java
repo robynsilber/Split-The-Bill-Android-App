@@ -35,6 +35,17 @@ public class Person implements Parcelable, Serializable {
         mNum++;
     }
 
+    public Person(double amount, int numPeople){
+        mName = "Person";
+        if(numPeople == 1){
+            mName += " " + Integer.toString(mNum);
+        }else{
+            mName += "s " + Integer.toString(mNum) + "-" + Integer.toString(mNum+numPeople-1);
+        }
+        mAmount = amount;
+        mNum += numPeople;
+    }
+
     protected Person(Parcel in) {
         mName = in.readString();
         mAmount = in.readDouble();

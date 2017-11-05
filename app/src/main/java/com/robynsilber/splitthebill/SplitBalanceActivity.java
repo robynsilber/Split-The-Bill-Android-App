@@ -46,12 +46,12 @@ public class SplitBalanceActivity extends AppCompatActivity {
          * TODO: check to see if Math.round could result in rounding up
          * **/
         if(diff == 0){ // even split
-            mBill.addPersonToList(new Person("Split between "+num, rAmt));
+            mBill.addPersonToList(new Person(rAmt, num));
             mBill.deductFromBalance(rAmt * num);
         }else if(diff > 0){
-            mBill.addPersonToList(new Person("Split between "+diff, rAmt + 0.01));
+            mBill.addPersonToList(new Person(rAmt + 0.01, diff));
             mBill.deductFromBalance((rAmt+0.01)*diff);
-            mBill.addPersonToList(new Person("Split between "+(num-diff), rAmt));
+            mBill.addPersonToList(new Person(rAmt, (num-diff)));
             mBill.deductFromBalance(rAmt * (num-diff));
         }else{
             Log.d("splitTheBalance", "diff is less than 0");
