@@ -18,14 +18,6 @@ public class ChooseActionActivity extends AppCompatActivity {
         updateBalanceOnUI();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        setContentView(R.layout.activity_choose_action);
-//        mBill = getIntent().getParcelableExtra("bill");
-        updateBalanceOnUI();
-    }
-
     private void updateBalanceOnUI(){
         TextView textView = (TextView) findViewById(R.id.balance);
         textView.setText(mBill.getStringBalance());
